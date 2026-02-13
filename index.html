@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sorry Rajjo ❤️</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(45deg,#ff4e8d,#ff758c);
+    font-family: Arial, sans-serif;
+    text-align:center;
+    overflow:hidden;
+}
+
+.container{
+    color:white;
+}
+
+h2{
+    font-size:30px;
+}
+
+button{
+    padding:12px 28px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    margin:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#yesBtn{
+    background:white;
+    color:#ff4e8d;
+}
+
+#noBtn{
+    background:#ff4e8d;
+    color:white;
+    position:relative;
+}
+
+#result{
+    margin-top:20px;
+    font-size:26px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Maaf kar de yaar 🥺❤️</h2>
+    <button id="yesBtn" onclick="yesClick()">Yes ❤️</button>
+    <button id="noBtn" onclick="noClick()">No 😅</button>
+    <div id="result"></div>
+</div>
+
+<script>
+function yesClick(){
+    document.getElementById("result").innerHTML="Thank you yaraa ❤️🥰";
+}
+
+function noClick(){
+    document.getElementById("result").innerHTML="Maan bhi ja na yaar 🥺💕";
+
+    let btn = document.getElementById("noBtn");
+    let x = Math.floor(Math.random() * 300) - 150;
+    let y = Math.floor(Math.random() * 300) - 150;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+</script>
+
+</body>
+  </html>
