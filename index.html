@@ -1,83 +1,154 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Sorry Rajjo ❤️</title>
+  <title>Rajjo Special 💖</title>
 
-<style>
-body{
-    margin:0;
-    padding:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background: linear-gradient(45deg,#ff4e8d,#ff758c);
-    font-family: Arial, sans-serif;
-    text-align:center;
-    overflow:hidden;
-}
+  <!-- 🎆 Fireworks Library -->
+  <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/fireworks.js"></script>
 
-.container{
-    color:white;
-}
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #c89292;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
 
-h2{
-    font-size:30px;
-}
+    .container {
+      margin-top: 100px;
+      position: relative;
+      z-index: 2;
+    }
 
-button{
-    padding:12px 28px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    margin:10px;
-    cursor:pointer;
-    transition:0.3s;
-}
+    img {
+      width: 250px;
+      border-radius: 10px;
+    }
 
-#yesBtn{
-    background:white;
-    color:#ff4e8d;
-}
+    h1 {
+      font-size: 32px;
+      margin: 20px;
+    }
 
-#noBtn{
-    background:#ff4e8d;
-    color:white;
-    position:relative;
-}
+    button {
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 20px;
+      background: #eee;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 
-#result{
-    margin-top:20px;
-    font-size:26px;
-    font-weight:bold;
-}
-</style>
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    #fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+  </style>
 </head>
-
 <body>
 
+<div id="fireworks"></div>
+
 <div class="container">
-    <h2>Maaf kar de yaar 🥺❤️</h2>
-    <button id="yesBtn" onclick="yesClick()">Yes ❤️</button>
-    <button id="noBtn" onclick="noClick()">No 😅</button>
-    <div id="result"></div>
+  <img src="https://media.tenor.com/9s1v8VxXq4cAAAAC/cute-cat.gif">
+  <h1 id="message">Rajjo 🥺 Maf kr de yrr 💖</h1>
+  <div>
+    <button onclick="yesClick()">Yes ❤️</button>
+    <button id="noBtn" onclick="noClick()">No 😏</button>
+  </div>
 </div>
 
+<!-- 🎵 Bollywood Love Song -->
+<audio id="bgMusic" loop>
+  <source src="https://pagalworld.com.se/files/download/id/6462" type="audio/mpeg">
+</audio>
+
 <script>
-function yesClick(){
-    document.getElementById("result").innerHTML="Thank you yaraa ❤️🥰";
+
+let step = 0;
+
+document.body.addEventListener("click", function(){
+  document.getElementById("bgMusic").play();
+}, { once: true });
+
+function yesClick() {
+
+  document.body.innerHTML = `
+    <div id="fireworks"></div>
+    <div class="container">
+      <img src="https://media.tenor.com/3xRC4pG2fP8AAAAC/cute-cat-love.gif">
+      <h1>Thank you Rajjo 🥹💞</h1>
+      <p>Ab kabhi galti nahi hogi 🫶</p>
+    </div>
+  `;
+
+  const container = document.getElementById('fireworks');
+  const fireworks = new Fireworks.default(container);
+  fireworks.start();
 }
 
-function noClick(){
-    document.getElementById("result").innerHTML="Maan bhi ja na yaar 🥺💕";
+function noClick() {
+  step++;
 
-    let btn = document.getElementById("noBtn");
-    let x = Math.floor(Math.random() * 300) - 150;
-    let y = Math.floor(Math.random() * 300) - 150;
-    btn.style.transform = `translate(${x}px, ${y}px)`;
+  if(step == 1){
+    document.getElementById("message").innerHTML = "Man bhi jaa yaraa ☺♥";
+  }
+  else if(step == 2){
+    document.getElementById("message").innerHTML = "Toffee Dilaungaa pagloo ☺🐒";
+  }
+  else if(step == 3){
+    document.getElementById("message").innerHTML = "Kitna code krayegi yarr 🥲🥲🥲";
+  }
+  else if(step >= 4){
+    moveButton();
+  }
 }
+
+function moveButton(){
+  let btn = document.getElementById("noBtn");
+  btn.style.position = "absolute";
+  let x = Math.random() * (window.innerWidth - 100);
+  let y = Math.random() * (window.innerHeight - 50);
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+}
+
+/* Floating Hearts */
+setInterval(function() {
+  let heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => { heart.remove(); }, 5000);
+}, 300);
+
 </script>
 
 </body>
-  </html>
+</html>
